@@ -1,0 +1,33 @@
+<div class="genealogy-container" [style.height.px]="getMaxYear()">
+    genealogy
+
+    <div class="periods">
+        @for(period of periods; track period) {
+            <div class="period"
+                [style.top.px]="period.start"
+                [style.height.px]="period.end - period.start"
+                [style.background-color]="period.color">
+
+                <div class="period-label"
+                    [style.color]="getLabelColor(period)">
+                    {{ period.name }}
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="genealogy-entries-container">
+        @for(entry of genealogy; track entry) {
+            <div class="genealogy-entry"
+                [style.top.px]="getLineTop(entry)">
+                <p>
+                    {{ entry.name }}
+                </p>
+                <div class="line"
+                    [style.height.px]="getLineHeight(entry)"
+                >
+                </div>
+            </div>
+        }
+    </div>
+</div>

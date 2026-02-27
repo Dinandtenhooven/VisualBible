@@ -1,0 +1,36 @@
+.genealogy-entries-container {
+    padding-left: 100px;
+}
+
+.line {
+    background-color: red;
+    width: 10px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.genealogy-entry {
+    position: relative;
+    width: 30px;
+    float: left;
+    text-align: center;
+}
+
+.periods {
+    position: absolute;
+    width: 100%;
+    height: 2000px;
+    z-index: -1;
+}
+
+.period {
+    position: absolute;
+    width: 100%;
+}
+
+.period-label {
+    position: absolute;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    font-size: 12px;
+}

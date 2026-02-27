@@ -1,0 +1,10 @@
+<div class="apps-menu">
+  
+    @for(app of apps; track app)
+    {
+        <div class="app-item">
+            <a [routerLink]="app.path">{{app.name}}</a>
+        </div>
+    }
+
+</div>
