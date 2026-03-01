@@ -4,7 +4,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./../docs",
-    "types": []
+    "types": [
+      "@angular/localize"
+    ]
   },
   "include": [
     "src/**/*.ts"

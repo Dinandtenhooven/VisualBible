@@ -9,12 +9,12 @@ import { GenealogyEntry, GetFather, GetGenealogyData } from "./genealogy.data";
 export class GenealogyComponent {
 
     genealogy: GenealogyEntry[];
+    readonly initialOffset = 40;
 
     periods = [
-        { name: 'Creation to 500', start: 0, end: 500, color: 'rgba(255,0,0,0.2)' },
-        { name: '500 to 1000', start: 500, end: 1000, color: 'rgba(0,255,0,0.2)' },
-        { name: '1000 to 1500', start: 1000, end: 1500, color: 'rgba(0,0,255,0.2)' },
-        { name: '1500 to 2000', start: 1500, end: 2000, color: 'rgba(255,255,0,0.2)' }
+        { name: 'Creation to Floot', start: 0, end: 2347 , color: 'rgba(255,0,0,0.2)' }, // year / 2 to fit in 1000px
+        { name: 'Flood to Jesus', start: 2347, end: 4747, color: 'rgba(0,255,0,0.2)' },
+        { name: 'Jesus to now', start: 4747, end: 6773, color: 'rgba(0,0,255,0.2)' }
     ];
 
     constructor() {
@@ -22,16 +22,17 @@ export class GenealogyComponent {
     }
 
     getLineHeight(entry: GenealogyEntry): number {
-        return entry.age / 2;
+        return entry.age;
     }
 
     getLineTop(entry: GenealogyEntry): number {
         var father = GetFather(entry);
+
         if (father) {
             return (entry.bornAtFathersAge / 2) + this.getLineTop(father);
         }
 
-        return 0;
+        return 10;
     }
 
     getMaxYear(): number {

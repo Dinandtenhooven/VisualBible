@@ -1,0 +1,19 @@
+.apps-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem auto;
+
+    padding-left: 10vw;
+    padding-right: 10vw;
+    padding-top: 2rem;
+}
+
+.app-item {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    // margin: auto;
+    text-align: center;
+    width: 100%;
+    height: 10vw;
+    margin-bottom: 1rem;
+}
