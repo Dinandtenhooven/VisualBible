@@ -1,5 +1,21 @@
-<div class="header">
-    <h1>VISUAL BIBLE</h1>
+<div class="header-wrapper">
+    <div class="header">
+        <div class="align-left">
+            <h1>VISUAL BIBLE</h1>
+        </div>
+
+        <div class="align-right">
+            <button class="settings-button" (click)="toggleSettings()">
+                <i class="fa-solid fa-gear"></i>
+            </button>
+        </div>
+        
+    </div>
+
+    @if(settingsToggle) {
+        <div class="settings-container">
+            <app-settings></app-settings>
+        </div>
+    }
 </div>
     
-

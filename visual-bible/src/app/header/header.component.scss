@@ -1,5 +1,21 @@
-.header {
+.header-wrapper {
     border-bottom: 1px solid #ccc;
-    padding: 1rem;
     background-color: white;
+}
+
+.header {
+    padding: 1rem;
+    height: 8vh;
+}
+
+.align-left {
+    float: left;
+}
+
+.align-right {
+    float: right;
+}
+
+.settings-container {
+    padding: 1rem;
 }

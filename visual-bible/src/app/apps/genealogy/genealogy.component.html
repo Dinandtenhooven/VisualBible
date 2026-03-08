@@ -19,7 +19,10 @@
             <div class="genealogy-entry"
                 [style.top.px]="getLineTop(entry)">
                 <p class="entry-name">
-                    {{ entry.name }}
+                    {{ entry.name }} 
+                    <bible-reference 
+                        [bookRef]="entry.bookRef">
+                    </bible-reference>
                 </p>
                 <div class="line"
                     [style.height.px]="getLineHeight(entry)"

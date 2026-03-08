@@ -1,0 +1,14 @@
+<span 
+    (mouseenter)="onHoverEnter($event)"
+    (mouseleave)="hidePopup()"
+>
+    &#128218;
+</span>
+
+@if(showPopup && result()) {
+    <div class="popup"
+        [style.top.px]="popupY"
+        [style.left.px]="popupX">
+        {{ result() }}
+    </div>
+}   

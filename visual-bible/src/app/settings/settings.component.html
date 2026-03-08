@@ -1,0 +1,14 @@
+<div>
+  
+  default bible version: {{ defaultBibleVersion }}
+
+  <input 
+    type="text" 
+    placeholder="type to search..." 
+    (input)="onSearchBibleSearch($event)"
+  />
+  
+  @for(result of bibleSearch; track result) {
+    <button (click)="selectBibleVersion(result)">{{result.name}}</button><br />
+  }
+</div>

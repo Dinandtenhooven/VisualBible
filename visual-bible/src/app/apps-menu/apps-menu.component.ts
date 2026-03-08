@@ -5,7 +5,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap/modal'
 
 @Component({
     selector: 'app-apps-menu',
-    imports: [CommonModule, RouterLink, ],
+    imports: [CommonModule, RouterLink],
     templateUrl: './apps-menu.component.html',
     styleUrls: ['./apps-menu.component.scss']
 })
