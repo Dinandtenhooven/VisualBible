@@ -12,6 +12,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap/modal'
 export class AppsMenuComponent {
 
     apps = [
+        { name: "Explanations", path: "explanations" },
         { name: "Genealogy", path: "genealogy" }
     ]
 

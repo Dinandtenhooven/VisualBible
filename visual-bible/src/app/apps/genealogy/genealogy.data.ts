@@ -8,9 +8,9 @@ export class GenealogyEntry {
 
 export function GetGenealogyData(): GenealogyEntry[] {
     return [
-        { name: 'Adam', father: '', age: 930, bornAtFathersAge: 0, bookRef: 'GEN.5.5' },
+        { name: 'Adam', father: '', age: 930, bornAtFathersAge: 0, bookRef: 'GEN.5.3' },
         { name: 'Seth', father: 'Adam', age: 912, bornAtFathersAge: 130, bookRef: 'GEN.5.6' },
-        { name: 'Enosh', father: 'Seth', age: 905, bornAtFathersAge: 105, bookRef: 'GEN.5.7' },
+        { name: 'Enosh', father: 'Seth', age: 905, bornAtFathersAge: 105, bookRef: 'GEN.5.9' },
         { name: 'Kenan', father: 'Enosh', age: 910, bornAtFathersAge: 90, bookRef: 'GEN.5.8' },
         { name: 'Mahalalel', father: 'Kenan', age: 895, bornAtFathersAge: 70, bookRef: 'GEN.5.9' },
         { name: 'Jared', father: 'Mahalalel', age: 962, bornAtFathersAge: 65, bookRef: 'GEN.5.10' },
