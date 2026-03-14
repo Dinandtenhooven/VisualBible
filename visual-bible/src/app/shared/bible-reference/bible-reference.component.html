@@ -1,14 +1,20 @@
-<span 
-    (mouseenter)="onHoverEnter($event)"
-    (mouseleave)="hidePopup()"
->
-    &#128218;
-</span>
+@if(popupMode() === true) {
+    <span 
+        (mouseenter)="onHoverEnter($event)"
+        (mouseleave)="hidePopup()"
+    >
+        &#128218;
+    </span>
+}
 
-@if(showPopup && result()) {
+@if(popupMode() && showPopup && result()) {
     <div class="popup"
         [style.top.px]="popupY"
         [style.left.px]="popupX">
-        {{ result() }}
+        {{ result()!.contentParsed }}
     </div>
 }   
+
+@if(popupMode() === false && result()) {
+    <span><b>{{ result()!.reference }}</b>  {{ result()!.contentParsed }}</span><br /><br />
+}

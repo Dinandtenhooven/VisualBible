@@ -13,7 +13,8 @@ export class AppsMenuComponent {
 
     apps = [
         { name: "Explanations", path: "explanations" },
-        { name: "Genealogy", path: "genealogy" }
+        { name: "Genealogy", path: "genealogy" },
+        { name: "Jerusalem Archeology", path: "jerusalem-archeology" }
     ]
 
     private modalService = inject(NgbModal);

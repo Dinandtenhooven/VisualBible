@@ -4,10 +4,14 @@ import * as L from 'leaflet';
 import * as _complete from "./content/_complete";
 import { JerusalemData } from "./jerusalem-archeology.data";
 import { MapPolygon } from "../../shared/maps/map-polygon";
+import { BibleReferenceComponent } from "../../shared/bible-reference/bible-reference.component";
 
 @Component({
     selector: 'app-jerusalem-archeology',
-    imports: [CommonModule],
+    imports: [
+      CommonModule,
+      BibleReferenceComponent
+    ],
     templateUrl: './jerusalem-archeology.component.html',
     styleUrl: './jerusalem-archeology.component.scss'
 })
@@ -30,7 +34,7 @@ export class JerusalemArcheologyComponent implements OnInit {
 
       this.map = L.map('map');
       this.map.fitBounds(bounds);
-      this.map.setMaxZoom(20);
+      this.map.setMaxZoom(19);
       this.map.setMinZoom(15);
 
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

@@ -1,5 +1,6 @@
 import { Component, input, Input, signal } from "@angular/core";
 import { BibleGatewayService } from "../../services/bible-gateway.service";
+import { BgVerse } from "../../services/models/bg-verse";
 
 @Component({
     selector: 'bible-reference',
@@ -10,14 +11,27 @@ import { BibleGatewayService } from "../../services/bible-gateway.service";
 export class BibleReferenceComponent {
     
     bookRef = input<string>('');
+    popupMode = input<boolean>(true);
 
     showPopup = false;
     popupX = 0;
     popupY = 0;
 
-    result = signal('');
+    result = signal<BgVerse | undefined>(undefined);
 
     constructor(private bibleGatewayService: BibleGatewayService) {}
+
+    ngOnInit() {
+        if(this.popupMode() === false) {
+            this.bibleGatewayService
+               .getVerse(this.bookRef())
+               .then(result => {
+                   this.result.set(result);
+
+                   console.log(this.result())
+               });
+        }
+    }
 
     async onHoverEnter(event: MouseEvent) {
         this.showPopup = true;

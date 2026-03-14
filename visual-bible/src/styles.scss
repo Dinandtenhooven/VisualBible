@@ -11,3 +11,42 @@ h1 {
 .app-wrapper {
     padding: 1rem;
 }
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-item {
+  border: 2px solid #DFB880;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.header-wrapper {
+    background-color: white;
+    border-bottom: 2px solid #DFB880;
+    color: black;
+}
+
+button {
+  border-bottom: 2px solid #DFB880;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.columns {
+  column-count: 3;
+  column-gap: 30px;
+}
+
+.black-on-white {
+  background-color: white;
+  color: black;
+}
+
+.white-on-blue {
+  background-color: #1A3E71;
+  color: white;
+}

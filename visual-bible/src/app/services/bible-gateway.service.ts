@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal} from '@angular/core';
 import { BgBook } from './models/bg-book';
 import { SettingsService } from './settings.service';
+import { BgVerse } from './models/bg-verse';
 
 @Injectable({providedIn: 'root'})
 export class BibleGatewayService {
@@ -26,11 +27,12 @@ export class BibleGatewayService {
         });
     }
 
-    public async getVerse(bookRef: string): Promise<string> {
-        var result = await this.getVerses(bookRef).then(response => {
-            var verse = response.data.content;
-            verse = verse.replace(/<[^>]*>/g, '');
-            verse = verse.replace(/^\d+/, ' ').trim();
+    public async getVerse(bookRef: string): Promise<BgVerse> {
+        var result = await this.getVerses(bookRef).then((response: { data: BgVerse }) => {
+            var verse = response?.data as BgVerse;
+
+            verse.contentParsed = verse.content.replace(/<[^>]*>/g, '');
+            verse.contentParsed = verse.contentParsed.replace(/^\d+/, ' ').trim();
 
             return verse;
         });
