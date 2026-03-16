@@ -5,9 +5,6 @@ import { MentionComponent } from '../../../shared/mention/mention.component';
   selector: 'app-coordinate-distance-explanation',
   standalone: true,
   templateUrl: 'coordinate-distance.component.html',
-  styleUrls: ['coordinate-distance.component.scss'],
-  imports: [
-    MentionComponent
-  ]
+  styleUrls: ['coordinate-distance.component.scss']
 })
 export class CoordinateDistanceExplanationComponent {}

@@ -5,6 +5,6 @@ import { MountOfOlives } from "./mount-of-olives";
 
 export const jerusalemData: JerusalemData[] = [
   GihonSpring,
-  // MountOfOlives,
+  MountOfOlives,
   GardenOfGetsemane
 ];
