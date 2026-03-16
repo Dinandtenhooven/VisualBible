@@ -10,7 +10,7 @@ import { BgVerse } from "../../services/models/bg-verse";
 })
 export class BibleReferenceComponent {
     
-    bookRef = input<string>('');
+    bookRef = input<string | null>('');
     popupMode = input<boolean>(true);
 
     showPopup = false;
@@ -22,9 +22,9 @@ export class BibleReferenceComponent {
     constructor(private bibleGatewayService: BibleGatewayService) {}
 
     ngOnInit() {
-        if(this.popupMode() === false) {
+        if(this.popupMode() === false && this.bookRef() !== null) {
             this.bibleGatewayService
-               .getVerse(this.bookRef())
+               .getVerse(this.bookRef()!)
                .then(result => {
                    this.result.set(result);
 
@@ -38,11 +38,13 @@ export class BibleReferenceComponent {
         this.popupX = event.clientX; // small offset
         this.popupY = event.clientY + 10;
 
-        this.bibleGatewayService
-            .getVerse(this.bookRef())
-            .then(result => {
-                this.result.set(result);
-            });
+        if(this.bookRef() !== null) {
+            this.bibleGatewayService
+                .getVerse(this.bookRef()!)
+                .then(result => {
+                    this.result.set(result);
+                });
+        }
     }
 
     hidePopup() {

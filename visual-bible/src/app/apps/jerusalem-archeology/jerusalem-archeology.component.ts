@@ -5,12 +5,15 @@ import * as _complete from "./content/_complete";
 import { JerusalemData } from "./jerusalem-archeology.data";
 import { MapPolygon } from "../../shared/maps/map-polygon";
 import { BibleReferenceComponent } from "../../shared/bible-reference/bible-reference.component";
+import { MentionComponent } from "../../shared/mention/mention.component";
+import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
 
 @Component({
     selector: 'app-jerusalem-archeology',
     imports: [
       CommonModule,
-      BibleReferenceComponent
+      BibleReferenceComponent,
+      MentionComponent
     ],
     templateUrl: './jerusalem-archeology.component.html',
     styleUrl: './jerusalem-archeology.component.scss'
@@ -21,12 +24,13 @@ export class JerusalemArcheologyComponent implements OnInit {
     map: L.Map | undefined;
 
     selectedData: JerusalemData | null = null;
+    htmlSnippet: SafeHtml | null = null;
 
-    constructor() { }
+    private polygons: Map<string, L.Polygon> = new Map();
+
+    constructor(private sanitizer: DomSanitizer) { }
 
     ngOnInit(): void {
-      const center = [31.7767, 35.2355];
-
       const bounds = L.latLngBounds(
         [31.7767 - 0.0337, 35.2355 - 0.040], // southwest
         [31.7767 + 0.0337, 35.2355 + 0.040]  // northeast
@@ -40,6 +44,8 @@ export class JerusalemArcheologyComponent implements OnInit {
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(this.map);
+
+      this.setMentionText();
     }
 
     selectData(data: JerusalemData): void {
@@ -51,19 +57,43 @@ export class JerusalemArcheologyComponent implements OnInit {
       this.selectedData = data;
     }
 
-    drawMapElements(data: JerusalemData) {
-      for(let element of data.mapElements) {
-        console.log(element);
-        const latLngs = element.toMapPoints();
-        console.log(JSON.stringify(latLngs));
-        console.log(latLngs);
-        L.polygon(latLngs, {color: "red"}).addTo(this.map!);
-        
+   drawMapElements(data: JerusalemData) {
+      if (this.layerExists(data.id)) {
+        return;
       }
+
+      for (let element of data.mapElements) {
+        this.drawPolygon(element, data.id);
+      }
+    }
+
+    drawPolygon(element: MapPolygon, id: string) {
+      const latLngs = element.toMapPoints();
+      const polygon = L.polygon(latLngs, { color: element.color })
+        .addTo(this.map!);
+
+      // store polygon using identifier
+      this.polygons.set(id, polygon);
     }
 
     isSelected(data: JerusalemData): boolean {
       return this.selectedData === data;
+    }
+
+    layerExists(id: string): boolean {
+      return this.polygons.has(id);
+    }
+    
+    setMentionText() {
+      var safeHtml = this.sanitizer.bypassSecurityTrustHtml(
+        `
+          Considering the projection type of the map, there is at most a 8 mm difference.
+          That is a very acceptable difference considering accuracy.
+          Read <a href="#/explanations/earth-curvature">this</a> article for an explanation.
+        `
+      );
+
+      this.htmlSnippet = safeHtml;
     }
 }
 

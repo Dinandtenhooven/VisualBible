@@ -1,4 +1,4 @@
-@if(popupMode() === true) {
+@if(popupMode() === true && bookRef() !== null) {
     <span 
         (mouseenter)="onHoverEnter($event)"
         (mouseleave)="hidePopup()"
@@ -11,7 +11,7 @@
     <div class="popup"
         [style.top.px]="popupY"
         [style.left.px]="popupX">
-        {{ result()!.contentParsed }}
+        <b>{{ result()!.reference }}</b> {{ result()!.contentParsed }}
     </div>
 }   
 

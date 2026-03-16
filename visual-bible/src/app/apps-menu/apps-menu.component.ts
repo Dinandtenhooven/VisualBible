@@ -1,11 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, signal, TemplateRef, WritableSignal } from "@angular/core";
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap/modal';
 
 @Component({
     selector: 'app-apps-menu',
-    imports: [CommonModule, RouterLink],
+    imports: [CommonModule],
     templateUrl: './apps-menu.component.html',
     styleUrls: ['./apps-menu.component.scss']
 })
@@ -20,6 +20,8 @@ export class AppsMenuComponent {
     private modalService = inject(NgbModal);
 	closeResult: WritableSignal<string> = signal('');
 
+	constructor(public router: Router) {}
+
     open(content: TemplateRef<any>) {
 		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
 			(result) => {
@@ -29,6 +31,10 @@ export class AppsMenuComponent {
 				this.closeResult.set(`Dismissed ${this.getDismissReason(reason)}`);
 			},
 		);
+	}
+
+	goto(url: string) {
+		this.router.navigateByUrl(url);
 	}
     
     private getDismissReason(reason: any): string {

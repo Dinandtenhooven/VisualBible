@@ -1,6 +1,13 @@
 <div class="app-wrapper">
   <h1>Jerususalem Map</h1>
 
+  @if(htmlSnippet) {
+    <app-mention
+      type="MAP"
+      [html]="htmlSnippet">
+    </app-mention>
+  }
+
   <div id="map"></div>
 
   @if(selectedData) {
@@ -15,7 +22,7 @@
     </div>
   }
 
-  <div>
+  <div class="mt-2">
     @for(item of jerusalemData; track item) {
       <button (click)="selectData(item)">
         {{item.title}}

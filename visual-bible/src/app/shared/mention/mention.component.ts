@@ -9,8 +9,16 @@ import { SafeHtml } from "@angular/platform-browser";
     imports: [CommonModule]
 })
 export class MentionComponent {
-    
-    text = input<string | SafeHtml | null>(null);
-    type = input<"AI" | null>(null);  
+    text = input<string | null>(null);
+    html = input<SafeHtml | null>(null);
 
+    type = input<"AI" | "MAP" | null>(null);  
+
+    ngOnInit() {
+        console.log(this.html());
+    }
+
+    hasHtml() {
+        return !!this.html();
+    }
 }

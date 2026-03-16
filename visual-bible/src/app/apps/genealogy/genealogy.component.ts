@@ -13,12 +13,6 @@ export class GenealogyComponent {
     genealogy: GenealogyEntry[];
     readonly initialOffset = 40;
 
-    periods = [
-        { name: 'Creation to Flood', start: 0, end: 2347 , color: 'rgba(255,0,0,0.2)' }, // year / 2 to fit in 1000px
-        { name: 'Flood to Jesus', start: 2347, end: 4747, color: 'rgba(0,255,0,0.2)' },
-        { name: 'Jesus to now', start: 4747, end: 6773, color: 'rgba(0,0,255,0.2)' }
-    ];
-
     constructor() {
         this.genealogy = GetGenealogyData();
     }

@@ -1,4 +1,9 @@
 <div class="mention black-on-white" [class]="type() + '-div'">
-  <i class="fa-solid img" [class]="'fa-brain'"></i>
-  {{ text() }}
+  <i class="fa-solid img" [class]="type() + '-img fa-brain'"></i>
+
+   @if(hasHtml()) {
+      <span [innerHTML]="html()"></span>
+    } @else {
+      {{ text() }}
+    }
 </div>

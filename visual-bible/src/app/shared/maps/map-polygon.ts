@@ -1,9 +1,10 @@
-import { LatLngExpression } from "leaflet";
+import { LatLngExpression, map } from "leaflet";
 import { MapElement } from "./map-element";
 import { MapPoint } from "./map-point";
 
 export class MapPolygon extends MapElement {
 
+  color: string = "red";
   points: MapPoint[] = [];
 
   public toMapPoints(): LatLngExpression[] {
@@ -12,9 +13,10 @@ export class MapPolygon extends MapElement {
     });
   }
 
-  static create(points: MapPoint[]): MapPolygon {
+  static create(points: MapPoint[], color: string = "red"): MapPolygon {
     var mapPolygon = new MapPolygon();
     mapPolygon.points = points;
+    mapPolygon.color = color;
 
     return mapPolygon;
   }

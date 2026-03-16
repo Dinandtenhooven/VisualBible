@@ -2,9 +2,9 @@
   
     @for(app of apps; track app)
     {
-        <div class="app-item">
+        <div class="app-item" (click)="goto(app.path)">
             <i class="fa-solid fa-children"></i>
-            <a [routerLink]="app.path">{{app.name}}</a>
+            {{ app.name }}
         </div>
     }
 
